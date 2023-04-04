@@ -39,11 +39,10 @@ def chatgpt():
     return completion['choices'][0]['message']['content']
 
 
-@app.route('/generate_code', methods=['POST'])
+@app.route('/generate_code', methods=['GET'])
 def generate_code():
-    data = request.json
-    language = data.get('language')
-    content = data.get('content')
+    language = request.args.get('language')
+    content = request.args.get('content')
 
     # Use the OpenAI Codex API to generate code
     prompt = f"generate {language} code:\n{content}"
